@@ -34,83 +34,79 @@ export default function Content() {
   return (
     <>
       <div className="container">
-        <h1 className="mt-5">To - Do App</h1>
+        <h1 className="m-5 text-center">To - Do App</h1>
+        <form onSubmit={(e) => handleSubmit(e)} className="row g-3">
+          <div className="col-auto">
+            <h2>Create a new task</h2>
+          </div>
+          <div className="col-auto">
+            <label htmlFor="name" className="form-label visually-hidden">
+              Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              className="form-control"
+              placeholder="Enter the name of task"
+              onChange={(e) => handleChange(e, "name")}
+              value={currentData.name}
+            />
+          </div>
+          <div className="col-auto">
+            <label htmlFor="description" className="form-label visually-hidden">
+              Description
+            </label>
+            <input
+              type="textarea"
+              name="description"
+              id="description"
+              className="form-control"
+              placeholder="Enter Description"
+              onChange={(e) => handleChange(e, "description")}
+              value={currentData.description}
+            />
+          </div>
+          <div className="col-auto">
+            <button type="submit" className="btn btn-primary mb-3">
+              Add
+            </button>
+          </div>
+        </form>
+      </div>
+      <div className="container mt-5">
         <div>
-          <div>
-            <h2>Create a new item</h2>
-          </div>
-          <div>
-            <form onSubmit={(e) => handleSubmit(e)}>
-              <div className="mb-3">
-                <label htmlFor="name" className="form-label">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  className="form-control"
-                  placeholder="Enter the name of the task"
-                  onChange={(e) => handleChange(e, "name")}
-                  value={currentData.name}
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="description" className="form-label">
-                  Description
-                </label>
-                <input
-                  type="textarea"
-                  name="description"
-                  id="description"
-                  className="form-control"
-                  placeholder="Enter Description"
-                  onChange={(e) => handleChange(e, "description")}
-                  value={currentData.description}
-                />
-              </div>
-              <button type="submit" className="btn btn-primary mb-3">
-                Add
-              </button>
-            </form>
-          </div>
+          <h2>List of items</h2>
         </div>
         <div>
-          <div>
-            <h2>List of items</h2>
-          </div>
-          <div>
-            {data.length ? (
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Sl. No.</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Delete</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.map((item, index) => {
-                    return (
-                      <tr>
-                        <th scope="row">{index + 1}</th>
-                        <td>{item.name}</td>
-                        <td>{item.description}</td>
-                        <td onClick={() => handleDelete(index)}>
-                          <button className="btn btn-primary mb-3">
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            ) : (
-              <p>List is Empty</p>
-            )}
-          </div>
+          {data.length ? (
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">Sl. No.</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((item, index) => {
+                  return (
+                    <tr>
+                      <th scope="row">{index + 1}</th>
+                      <td>{item.name}</td>
+                      <td>{item.description}</td>
+                      <td onClick={() => handleDelete(index)}>
+                        <button className="btn btn-primary mb-3">Delete</button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          ) : (
+            <p>List is Empty</p>
+          )}
         </div>
       </div>
     </>
