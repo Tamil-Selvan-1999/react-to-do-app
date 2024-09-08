@@ -8,6 +8,11 @@ export default function Content() {
 
   const [data, setData] = useState([]);
 
+  const handleDelete = (index) => {
+    const newArray = [...data.slice(0, index), ...data.slice(index + 1)];
+    setData(newArray);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setData([...data, currentData]);
@@ -37,7 +42,7 @@ export default function Content() {
           <div>
             <form onSubmit={(e) => handleSubmit(e)}>
               <div className="mb-3">
-                <label for="name" className="form-label">
+                <label htmlFor="name" className="form-label">
                   Name
                 </label>
                 <input
@@ -51,7 +56,7 @@ export default function Content() {
                 />
               </div>
               <div className="mb-3">
-                <label for="description" className="form-label">
+                <label htmlFor="description" className="form-label">
                   Description
                 </label>
                 <input
@@ -76,26 +81,32 @@ export default function Content() {
           </div>
           <div>
             {data.length ? (
-              data.map((item, index) => {
-                return (
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Sl. No.</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                      </tr>
-                    </thead>
-                    <tbody>
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Sl. No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.map((item, index) => {
+                    return (
                       <tr>
                         <th scope="row">{index + 1}</th>
                         <td>{item.name}</td>
                         <td>{item.description}</td>
+                        <td onClick={() => handleDelete(index)}>
+                          <button className="btn btn-primary mb-3">
+                            Delete
+                          </button>
+                        </td>
                       </tr>
-                    </tbody>
-                  </table>
-                );
-              })
+                    );
+                  })}
+                </tbody>
+              </table>
             ) : (
               <p>List is Empty</p>
             )}

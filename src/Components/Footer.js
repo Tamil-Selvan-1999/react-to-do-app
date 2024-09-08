@@ -1,9 +1,9 @@
 export default function Footer() {
   return (
     <>
-      <footer class="footer mt-auto py-3 bg-body-tertiary">
-        <div class="container">
-          <span class="text-body-secondary">To - Do App</span>
+      <footer className="footer mt-auto py-3 bg-body-tertiary">
+        <div className="container">
+          <span className="text-body-secondary">To - Do App</span>
         </div>
       </footer>
     </>
