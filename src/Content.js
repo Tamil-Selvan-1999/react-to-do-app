@@ -76,7 +76,7 @@ export default function Content() {
       </div>
       <div className="container mt-5">
         <div>
-          <h2>List of items</h2>
+          <h2 className="mb-3">List of items</h2>
         </div>
         <div>
           {data.length ? (
@@ -92,7 +92,7 @@ export default function Content() {
               <tbody>
                 {data.map((item, index) => {
                   return (
-                    <tr>
+                    <tr key={index}>
                       <th scope="row">{index + 1}</th>
                       <td>{item.name}</td>
                       <td>{item.description}</td>
